@@ -1,7 +1,8 @@
 import React from 'react'; 
-import { Button, View,Text } from 'react-native'; 
+import { Button, View,Text } from 'react-native';
+import {StyleSheet} from 'react-native'; 
 
-class Profile extends React.Component { 
+class SearchMap extends React.Component { 
     static navigationOptions = { 
       title: 'Have You Seen It?'
     }; 
@@ -19,4 +20,4 @@ render() {
       );
 }
 }
-export default Profile; 
+export default SearchMap; 
