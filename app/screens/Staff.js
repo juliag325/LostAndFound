@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 
 class Staff extends React.Component { 
     static navigationOptions = { 
-      title: 'Have You Seen It?'
+      title: 'Staff'
     }; 
 render() { 
     return (
@@ -13,9 +13,15 @@ render() {
          alignItems:'center',
          justifyContent:'center'
         }}>
-      <Button title="Go to Home screen"
-          onPress={() => this.props.navigation.navigate('Home')}
+      <Button title="Found Form"
+          onPress={() => this.props.navigation.navigate('FoundForm')}
          />
+      <Button title = "Pickup"
+          onPress={() => this.props.navigation.navigate('FoundForm')}          
+          />
+      <Button title = "History"
+          onPress={() => this.props.navigation.navigate('History')}
+      />
         </View>
       );
 }

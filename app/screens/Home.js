@@ -81,27 +81,5 @@ class Home extends React.Component {
 export default Home; 
 
 
-/*const styles = StyleSheet.create({
-  bigTitle: {  
-    color: 'black',
-    fontWeight: 'bold',
-    alignContent: 'center',
-    fontSize: 30,
-    textAlignVertical: 'center', 
-    justifyContent: 'center'
-  },
-  background: {
-    color: 'blue',
-  },
-});
 
-export default class Home extends Component {
-  render() {
-    return (
-      <View> 
-        <Text style={styles.bigTitle}>Place</Text>
-      </View>
-    );
-  }
-} 
-*/
+
