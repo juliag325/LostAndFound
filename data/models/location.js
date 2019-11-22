@@ -5,8 +5,11 @@ var locationSchema = new Schema({
   name: {
     type: String,
     unique: true,
+    required: true
   },
-  permittedIDs: Array
+  permittedIDs: {
+    type: Array,
+    required: true
 });
 
 // Export Mongoose model
