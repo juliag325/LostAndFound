@@ -1,16 +1,16 @@
-import React, { Component } from 'react'; 
-import { createStackNavigator } from 'react-navigation-stack'; 
-import { createAppContainer } from 'react-navigation'; 
-import Home from './app/screens/Home'; 
-import SearchItem from './app/screens/SearchItem'; 
+import React, { Component } from 'react';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import Home from './app/screens/Home';
+import SearchItem from './app/screens/SearchItem';
 import SearchMap from './app/screens/SearchMap';
-import Staff from './app/screens/Staff'; 
+import Staff from './app/screens/Staff';
 
 const Project = createStackNavigator({
     Home: {
         screen: Home
-    }, 
-    SearchItem: { 
+    },
+    SearchItem: {
         screen: SearchItem
     },
     SearchMap: {
@@ -18,7 +18,19 @@ const Project = createStackNavigator({
     },
     Staff: {
         screen: Staff
+    },
+    FoundForm: {
+      screen: FoundForm
+    },
+    History: {
+      screen: History
+    },
+    WelcomeBack: {
+      screen: WelcomeBack
+    },
+    Pickup: {
+      screen Pickup
     }
-}); 
+});
 
-export default createAppContainer(Project); 
+export default createAppContainer(Project);
