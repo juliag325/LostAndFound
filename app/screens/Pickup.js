@@ -14,10 +14,10 @@ class Pickup extends React.Component {
              alignItems:'center',
              justifyContent:'center'
             }}>
-          <Button title="Pickup"
-              onPress={() => this.props.navigation.navigate('Pickup')}
-             />
-            </View>
+            <Button title="Go to Home screen"
+                onPress={() => this.props.navigation.navigate('Home')}
+               />
+              </View>
           );
     }
     }
