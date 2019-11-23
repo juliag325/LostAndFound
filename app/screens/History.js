@@ -1,24 +1,24 @@
-import React from 'react'; 
+import React from 'react';
 import { Button, View,Text } from 'react-native';
-import {StyleSheet} from 'react-native'; 
+import {StyleSheet} from 'react-native';
 
-class FoundForm extends React.Component { 
-    static navigationOptions = { 
+class History extends React.Component {
+    static navigationOptions = {
       title: 'History'
-    }; 
+    };
 
-    render() { 
+    render() {
         return (
-            <View style={{ 
+            <View style={{
              flex: 1,
              alignItems:'center',
              justifyContent:'center'
             }}>
-          <Button title="History"
-              onPress={() => this.props.navigation.navigate('History')}
-             />
-            </View>
+            <Button title="Go to Home screen"
+                onPress={() => this.props.navigation.navigate('Home')}
+               />
+              </View>
           );
     }
     }
-    export default History; 
+    export default History;

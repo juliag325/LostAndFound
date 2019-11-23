@@ -1,15 +1,15 @@
-import React from 'react'; 
+import React from 'react';
 import { Button, View,Text } from 'react-native';
-import {StyleSheet} from 'react-native'; 
+import {StyleSheet} from 'react-native';
 
-class FoundForm extends React.Component { 
-    static navigationOptions = { 
+class Pickup extends React.Component {
+    static navigationOptions = {
       title: 'Pickup'
-    }; 
+    };
 
-    render() { 
+    render() {
         return (
-            <View style={{ 
+            <View style={{
              flex: 1,
              alignItems:'center',
              justifyContent:'center'
@@ -21,4 +21,4 @@ class FoundForm extends React.Component {
           );
     }
     }
-    export default Pickup; 
+    export default Pickup;
