@@ -18,18 +18,6 @@ const Project = createStackNavigator({
     },
     Staff: {
         screen: Staff
-    },
-    FoundForm: {
-      screen: FoundForm
-    },
-    History: {
-      screen: History
-    },
-    WelcomeBack: {
-      screen: WelcomeBack
-    },
-    Pickup: {
-      screen Pickup
     }
 });
 
