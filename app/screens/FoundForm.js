@@ -3,17 +3,17 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 
 class FoundForm extends React.Component {
   state = {
-      email: '',
-      password: ''
+      item: '',
+      description: ''
    }
-   handleEmail = (text) => {
-      this.setState({ email: text })
+   handleItem = (text) => {
+      this.setState({ item: text })
    }
-   handlePassword = (text) => {
-      this.setState({ password: text })
+   handleDesc = (text) => {
+      this.setState({ description: text })
    }
    submit = (email, pass) => {
-      alert('email: ' + email + ' password: ' + pass)
+      alert('item: ' + email + ' description: ' + pass)
    }
    render() {
       return (
@@ -23,19 +23,19 @@ class FoundForm extends React.Component {
                placeholder = "Item"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
-               onChangeText = {this.handleEmail}/>
+               onChangeText = {this.handleItem}/>
 
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Description"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
-               onChangeText = {this.handlePassword}/>
+               onChangeText = {this.handleDesc}/>
 
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.submit(this.state.email, this.state.password)
+                  () => this.submit(this.state.item, this.state.description)
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
