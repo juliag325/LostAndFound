@@ -51,7 +51,7 @@ const st = StyleSheet.create({
 
 class SearchItem extends React.Component { 
     static navigationOptions = { 
-      title: 'Have You Seen It?'
+      title: 'Search Item'
     }; 
 render() { 
   // const [value, onChangeText] = React.useState('Useless Placeholder');
@@ -64,9 +64,6 @@ render() {
          backgroundColor: '#ADD8E6',
          fontFamily: 'Georgia'
         }}>
-      <Button title="Go to Home screen"
-          onPress={() => this.props.navigation.navigate('Home')}
-         />
          <Text style = {st.title}>Seach Lost Item</Text>
          <Text></Text>
 
