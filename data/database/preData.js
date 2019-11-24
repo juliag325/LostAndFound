@@ -1,5 +1,3 @@
-import {db} from 'dbconfig'
-
 db.ref('/locations').push({
  name: 'marston',
  staff_ID: [1,2,3]
