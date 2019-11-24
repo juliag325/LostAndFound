@@ -1,16 +1,32 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import {db} from './../../data/database/dbconfig' //connect to db
+
+let foundRef = db.ref('/found'); //gets reference to found items
 
 class Pickup extends React.Component {
     static navigationOptions = {
       title: 'Pickup'
     };
 
-    state = {
+    state = { //values you want to change as you go
+      // found objects as an array (console.log to see inside)
+
+      foundItems: [], // objects should be inside already
+      
+      //your variables
         name: '',
         g_ID: '',
         item: ''
      }
+
+   componentDidMount() { //Puts all the refences as objects in an array
+     foundRef.on('value', snapshot => {
+       this.setState({ foundItems: Object.values(snapshot.val()) });
+     });
+   }
+
+  //Check values for errors before inputing them to state
    handleName = (text) => {
       this.setState({ name: text })
    }
@@ -20,9 +36,20 @@ class Pickup extends React.Component {
    handleItem = (text) => {
      this.setState({ item: text })
    }
+
+   // submit button to enter stuff
    submit = (name, g_ID, item) => {
       alert('name: ' + name + ' g_ID: ' + g_ID + 'item:' + item)
+
+      //add to db example: (another example in FoundForm)
+      // db.ref('/history').push({
+      //  id: id,
+      // });
+      // this.props.navigation.navigate('WelcomeBack');
    }
+
+
+   //render
    render() {
       return (
          <View style = {styles.container}>
