@@ -13,6 +13,7 @@ class FoundForm extends React.Component {
 
   state = {
       item: '',
+      id: Math.floor(Math.random() * 1000000),
       description: '',
       date: '',
       category: `${this.buttons[1]}`,
@@ -28,7 +29,7 @@ class FoundForm extends React.Component {
       this.setState({ date: text.toLowerCase() });
    }
 
-   submit = (item, category, desc, date) => {
+   submit = (id, item, category, desc, date) => {
      let temp = "xx/xx/xxxx"
      if (!(date.length == temp.length && /\d/.test(date))) {
        alert("Error: Date not correctly formatted");
@@ -38,7 +39,7 @@ class FoundForm extends React.Component {
      }
      else {
        db.ref('/found').push({
-        id: '',
+        id: id,
         name: item,
         category: category,
         desc: desc,
@@ -85,7 +86,7 @@ class FoundForm extends React.Component {
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.submit(this.state.item, this.state.category, this.state.description, this.state.date)
+                  () => this.submit(this.state.id, this.state.item, this.state.category, this.state.description, this.state.date)
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
