@@ -63,12 +63,12 @@ class Staff extends React.Component {
 
     componentDidMount() {
       locationsRef.on('value', snapshot => {
-      this.setState({ locations: Object.values(snapshot.val()) });
+        this.setState({ locations: Object.values(snapshot.val()) });
       });
     }
 
     handleName = (input) => {
-      this.setState({ i_name: input })
+      this.setState({ i_name: input.toLowerCase() })
     }
 
     handleID = (input) => {

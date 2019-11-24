@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, ActionSheetIOS } from 'react-native';
 import {db} from './../../data/database/dbconfig'
 
+let foundRef = db.ref('/found');
 
 class FoundForm extends React.Component {
   static navigationOptions = {
@@ -14,7 +15,8 @@ class FoundForm extends React.Component {
       item: '',
       description: '',
       date: '',
-      category: `${this.buttons[1]}`
+      category: `${this.buttons[1]}`,
+      foundItem: []
    }
    handleItem = (text) => {
       this.setState({ item: text.toLowerCase() })
@@ -24,8 +26,8 @@ class FoundForm extends React.Component {
    }
    handleDate = (text) => {
       this.setState({ date: text.toLowerCase() });
-
    }
+
    submit = (item, category, desc, date) => {
      let temp = "xx/xx/xxxx"
      if (!(date.length == temp.length && /\d/.test(date))) {
@@ -36,10 +38,12 @@ class FoundForm extends React.Component {
      }
      else {
        db.ref('/found').push({
+        id: '',
         name: item,
         category: category,
         desc: desc,
-        date: date
+        date: date,
+        pickup: false
        });
        this.props.navigation.navigate('WelcomeBack');
      }
