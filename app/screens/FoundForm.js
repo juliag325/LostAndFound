@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 
 class FoundForm extends React.Component {
+  static navigationOptions = {
+    title: 'FoundForm'
+  };
+
   state = {
       item: '',
       description: ''
