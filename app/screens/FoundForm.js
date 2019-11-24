@@ -1,26 +1,48 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, ActionSheetIOS } from 'react-native';
+import {db} from './../../data/database/dbconfig'
+
 
 class FoundForm extends React.Component {
   static navigationOptions = {
     title: 'FoundForm'
   };
 
-  buttons = ['Cancel', 'Cloth','Phone','Wallet', 'Backpack', 'Debit/Credit Card', 'Keys', 'Accessories', 'Other'];
+  buttons = ['Cancel', 'cloth','phone', 'laptop', 'wallet', 'backpack', 'credit card', 'keys', 'accessories', 'other'];
 
   state = {
       item: '',
       description: '',
-      clicked: `${this.buttons[1]}`
+      date: '',
+      category: `${this.buttons[1]}`
    }
    handleItem = (text) => {
-      this.setState({ item: text })
+      this.setState({ item: text.toLowerCase() })
    }
    handleDesc = (text) => {
-      this.setState({ description: text })
+      this.setState({ description: text.toLowerCase() })
    }
-   submit = (item, desc) => {
-      alert('item: ' + item + ' description: ' + desc)
+   handleDate = (text) => {
+      this.setState({ date: text.toLowerCase() });
+
+   }
+   submit = (item, category, desc, date) => {
+     let temp = "xx/xx/xxxx"
+     if (!(date.length == temp.length && /\d/.test(date))) {
+       alert("Error: Date not correctly formatted");
+     }
+     else if(item == '' || category == '' || desc == '' || date == '') {
+       alert("Error: Do not leave any inputs empty.");
+     }
+     else {
+       db.ref('/found').push({
+        name: item,
+        category: category,
+        desc: desc,
+        date: date
+       });
+       this.props.navigation.navigate('WelcomeBack');
+     }
    }
    render() {
       return (
@@ -33,11 +55,19 @@ class FoundForm extends React.Component {
                autoCapitalize = "none"
                onChangeText = {this.handleItem}/>
 
+             <Text>Enter the date the item was found:</Text>
+             <TextInput style = {styles.input}
+                underlineColorAndroid = "transparent"
+                placeholder = "xx/xx/xxxx"
+                placeholderTextColor = "#9a73ef"
+                autoCapitalize = "none"
+                onChangeText = {this.handleDate}/>
+
             <Text>Select the Category:</Text>
             <TouchableOpacity
               onPress={this.showActionSheet}
               style={styles.input}>
-              <Text>{this.state.clicked}</Text>
+              <Text>{this.state.category}</Text>
             </TouchableOpacity>
 
             <Text>Enter details:</Text>
@@ -51,7 +81,7 @@ class FoundForm extends React.Component {
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.submit(this.state.item, this.state.description)
+                  () => this.submit(this.state.item, this.state.category, this.state.description, this.state.date)
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
@@ -66,7 +96,7 @@ class FoundForm extends React.Component {
      },
      (buttonIndex) => {
        if(buttonIndex != 0){
-         this.setState({ clicked: this.buttons[buttonIndex] });
+         this.setState({ category: this.buttons[buttonIndex].toLowerCase() });
        }
      });
    }
