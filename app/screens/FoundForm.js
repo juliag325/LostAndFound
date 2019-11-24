@@ -8,7 +8,7 @@ class FoundForm extends React.Component {
     title: 'FoundForm'
   };
 
-  buttons = ['Cancel', 'cloth','phone', 'laptop', 'wallet', 'backpack', 'credit card', 'keys', 'accessories', 'other'];
+  buttons = ['Cancel', 'clothing','phone', 'laptop', 'wallet', 'backpack', 'credit card', 'keys', 'accessories', 'other'];
 
   state = {
       item: '',
