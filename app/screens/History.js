@@ -12,7 +12,8 @@ class History extends React.Component {
             <View style={{
              flex: 1,
              alignItems:'center',
-             justifyContent:'center'
+             justifyContent:'center',
+             backgroundColor: '#ADD8E6'
             }}>
             <Button title="Go to Home screen"
                 onPress={() => this.props.navigation.navigate('Home')}
