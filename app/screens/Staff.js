@@ -65,25 +65,25 @@ render() {
       
       <Text style = {st.baseText}>Location ID</Text>
       <TextInput style = {st.input}
-            underlineColorAndroid = "transparent"
-            placeholder = "Location ID"
-            placeholderTextColor = "#696969"
-            onChangeText = {this.handleDesc}/>
+        underlineColorAndroid = "transparent"
+        placeholder = "Location ID"
+        placeholderTextColor = "#696969"
+        onChangeText = {this.handleDesc}/>
       <Text></Text>
 
       <Text style = {st.baseText}>Staff ID</Text>
       <TextInput style = {st.input}
-            underlineColorAndroid = "transparent"
-            placeholder = "Staff ID"
-            placeholderTextColor = "#696969"
-            onChangeText = {this.handleDesc}/>
+        underlineColorAndroid = "transparent"
+        placeholder = "Staff ID"
+        placeholderTextColor = "#696969"
+        onChangeText = {this.handleDesc}/>
       
       <TouchableOpacity 
-               style = {st.searchButton}
-               onPress={() => this.props.navigation.navigate('WelcomeBack')}
-               underlayColor='#fff'>
-                 <Text style = {st.loginText}>Found Form</Text>
-             </TouchableOpacity>
+        style = {st.searchButton}
+        onPress={() => this.props.navigation.navigate('WelcomeBack')}
+        underlayColor='#fff'>
+          <Text style = {st.loginText}>Login</Text>
+      </TouchableOpacity>
         </View>
       );
 }
