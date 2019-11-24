@@ -8,14 +8,14 @@ import { TextInput } from 'react-native';
 const st = StyleSheet.create({ 
   title: {
     color: 'black',
-    fontSize: 200, 
+    fontSize: 30, 
     fontFamily: 'Georgia',
     alignContent: 'flex-start', 
     justifyContent: 'center'
   },
   baseText:{
     color: 'black',
-    fontSize: 150
+    fontSize: 20
   },
   background: { 
     color: 'blue',
@@ -31,15 +31,21 @@ const st = StyleSheet.create({
    borderWidth: 1, 
    borderColor: '#fff',
    fontSize: 36
-
   },
-
+  input: {
+    margin: 15,
+    height: 40,
+    width: 300,
+    borderColor: '#696969',
+    borderWidth: 1
+ },
   loginText: { 
     color: '#fff',
     textAlign: 'center',
     paddingLeft: 10,
     paddingRight: 10
   }
+
   
 });
 
@@ -61,23 +67,23 @@ render() {
       <Button title="Go to Home screen"
           onPress={() => this.props.navigation.navigate('Home')}
          />
-         <Text title = {st.titleText}>Seach Lost Item</Text>
+         <Text style = {st.title}>Seach Lost Item</Text>
          <Text></Text>
 
-         <Text body = {st.baseText}>Item</Text>
-         <TextInput
-            style={{ height: 30, width: 300, borderColor: 'gray', borderWidth: 1 }}
-            // onChangeText={text => onChangeText(text)}
-            // value={value}
-          />
+         <Text style = {st.baseText}>Item</Text>
+         <TextInput style = {st.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Item"
+               placeholderTextColor = "#696969"
+               onChangeText = {this.handleDesc}/>
           <Text></Text>
 
-         <Text body = {st.baseText}>Category</Text>
-         <TextInput
-            style={{ height: 30, width: 300, borderColor: 'gray', borderWidth: 1 }}
-            // onChangeText={text => onChangeText(text)}
-            // value={value}
-          />
+         <Text style = {st.baseText}>Category</Text>
+         <TextInput style = {st.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Categoty"
+               placeholderTextColor = "#696969"
+               onChangeText = {this.handleDesc}/>
           {/* <Dropdown
             label='Category'
             data={data}
