@@ -9,6 +9,7 @@ import Staff from './app/screens/Staff';
 import FoundForm from './app/screens/FoundForm';
 import Pickup from './app/screens/Pickup';
 import History from './app/screens/History';
+import WelcomeBack from './app/screens/WelcomeBack'
 
 const Project = createStackNavigator({
     Home: {
@@ -31,6 +32,9 @@ const Project = createStackNavigator({
     },
     History: {
         screen: History
+    },
+    WelcomeBack: {
+        screen: WelcomeBack
     }
 });
 
