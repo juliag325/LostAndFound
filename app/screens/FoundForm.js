@@ -12,8 +12,8 @@ class FoundForm extends React.Component {
    handleDesc = (text) => {
       this.setState({ description: text })
    }
-   submit = (email, pass) => {
-      alert('item: ' + email + ' description: ' + pass)
+   submit = (item, desc) => {
+      alert('item: ' + item + ' description: ' + desc)
    }
    render() {
       return (
