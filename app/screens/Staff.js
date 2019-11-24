@@ -50,7 +50,7 @@ const st = StyleSheet.create({
 class Staff extends React.Component {
     static navigationOptions = {
       title: 'Staff'
-    }; 
+    };
 render() {
     return (
         <View style={{
@@ -86,6 +86,6 @@ render() {
       </TouchableOpacity>
         </View>
       );
-}
+    }
 }
 export default Staff;
