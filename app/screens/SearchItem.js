@@ -9,7 +9,7 @@ const st = StyleSheet.create({
   title: {
     color: 'black',
     fontSize: 30, 
-    fontFamily: 'Georgia',
+    fontFamily: 'Courier',
     alignContent: 'flex-start', 
     justifyContent: 'center'
   },
@@ -21,17 +21,17 @@ const st = StyleSheet.create({
     color: 'blue',
   },
   searchButton: { 
-   marginRight: 40,
-   marginLeft: 40, 
-   marginTop: 10, 
-   paddingTop: 10,
-   paddingBottom: 10, 
-   backgroundColor: '#00008b', 
-   borderRadius: 10, 
-   borderWidth: 1, 
-   borderColor: '#fff',
-   fontSize: 36
-  },
+    marginRight: 40,
+    marginLeft: 40, 
+    marginTop: 10, 
+    paddingTop: 10,
+    paddingBottom: 10, 
+    backgroundColor: '#3333FF', 
+    borderRadius: 10, 
+    borderWidth: 1, 
+    borderColor: '#fff',
+    fontSize: 20
+   },
   input: {
     margin: 15,
     height: 40,
@@ -88,11 +88,14 @@ render() {
             label='Category'
             data={data}
           /> */}
-
-         <Button title="Seach Item"
-         //need to change navigation
+      
+         <TouchableOpacity 
+          style = {st.searchButton}
+          //need to change navigation
           onPress={() => this.props.navigation.navigate('Home')}
-         />
+          underlayColor='#fff'>
+            <Text style = {st.loginText}>Search Item</Text>
+          </TouchableOpacity>
         </View>
       );
         }
