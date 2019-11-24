@@ -52,25 +52,33 @@ class Pickup extends React.Component {
    //render
    render() {
       return (
-         <View style = {styles.container}>
+         <View style={{
+            flex: 1,
+            alignItems:'center',
+            justifyContent:'center',
+            backgroundColor: '#ADD8E6',
+            fontFamily: 'Georgia'
+           }}>
+            <Text style = {styles.title}>Pickup Item Form</Text>
+            <Text></Text>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Name"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#696969"
                autoCapitalize = "none"
                onChangeText = {this.handleName}/>
 
              <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "GatorID"
-                placeholderTextColor = "#9a73ef"
+                placeholderTextColor = "#696969"
                 autoCapitalize = "none"
                 onChangeText = {this.handleGID}/>
 
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Item Collected"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#696969"
                autoCapitalize = "none"
                onChangeText = {this.handleItem}/>
 
@@ -92,17 +100,31 @@ const styles = StyleSheet.create({
    container: {
       paddingTop: 23
    },
+   title: {
+      color: 'black',
+      fontSize: 30, 
+      fontFamily: 'Courier',
+      alignContent: 'flex-start', 
+      justifyContent: 'center'
+    },
    input: {
       margin: 15,
       height: 40,
-      borderColor: '#7a42f4',
+      width: 300,
+      borderColor: '#696969',
       borderWidth: 1
    },
    submitButton: {
-      backgroundColor: '#7a42f4',
-      padding: 10,
-      margin: 15,
-      height: 40,
+      marginRight: 40,
+      marginLeft: 40, 
+      marginTop: 10, 
+      paddingTop: 10,
+      paddingBottom: 10, 
+      backgroundColor: '#3333FF', 
+      borderRadius: 10, 
+      borderWidth: 1, 
+      borderColor: '#fff',
+      fontSize: 20
    },
    submitButtonText:{
       color: 'white'

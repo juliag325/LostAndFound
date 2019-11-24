@@ -51,35 +51,43 @@ class FoundForm extends React.Component {
    }
    render() {
       return (
-         <View style = {styles.container}>
-            <Text>Enter the item name:</Text>
+         <View style={{
+            flex: 1,
+            alignItems:'center',
+            justifyContent:'center',
+            backgroundColor: '#ADD8E6',
+            fontFamily: 'Georgia'
+           }}>
+            <Text style = {styles.title}>Found Item Form</Text>
+            <Text></Text>
+            <Text style = {styles.baseText}>Enter the item name:</Text>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Item"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#696969"
                autoCapitalize = "none"
                onChangeText = {this.handleItem}/>
 
-             <Text>Enter the date the item was found:</Text>
+             <Text style = {styles.baseText}>Enter the date the item was found:</Text>
              <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "xx/xx/xxxx"
-                placeholderTextColor = "#9a73ef"
+                placeholderTextColor = "#696969"
                 autoCapitalize = "none"
                 onChangeText = {this.handleDate}/>
 
-            <Text>Select the Category:</Text>
+            <Text style = {styles.baseText}>Select the Category:</Text>
             <TouchableOpacity
               onPress={this.showActionSheet}
               style={styles.input}>
               <Text>{this.state.category}</Text>
             </TouchableOpacity>
 
-            <Text>Enter details:</Text>
+            <Text style = {styles.baseText}>Enter details:</Text>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Description"
-               placeholderTextColor = "#9a73ef"
+               placeholderTextColor = "#696969"
                autoCapitalize = "none"
                onChangeText = {this.handleDesc}/>
 
@@ -115,17 +123,35 @@ const styles = StyleSheet.create({
    container: {
       paddingTop: 23
    },
+   title: {
+      color: 'black',
+      fontSize: 30, 
+      fontFamily: 'Courier',
+      alignContent: 'flex-start', 
+      justifyContent: 'center'
+    },
+    baseText:{
+      color: 'black',
+      fontSize: 15
+    },
    input: {
       margin: 15,
       height: 40,
-      borderColor: '#7a42f4',
+      width: 300,
+      borderColor: '#696969',
       borderWidth: 1
    },
    submitButton: {
-      backgroundColor: '#7a42f4',
-      padding: 10,
-      margin: 15,
-      height: 40,
+      marginRight: 40,
+      marginLeft: 40, 
+      marginTop: 10, 
+      paddingTop: 10,
+      paddingBottom: 10, 
+      backgroundColor: '#3333FF', 
+      borderRadius: 10, 
+      borderWidth: 1, 
+      borderColor: '#fff',
+      fontSize: 20
    },
    submitButtonText:{
       color: 'white'
