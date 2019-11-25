@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, ActionSheetIOS, StyleSheet, TextInput, FlatList} from 'react-native';
+import { Button, View, Text, ActionSheetIOS, StyleSheet, TextInput, FlatList, Image, ScrollView} from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 //import { Dropdown } from 'react-native-material-dropdown';
 import {db} from './../../data/database/dbconfig'
@@ -16,9 +16,13 @@ const st = StyleSheet.create({
   },
   baseText:{
     color: 'black',
-    fontSize: 20
+    fontSize: 20,
   },
-
+  baseeText:{
+    color: 'black',
+    fontSize: 20,
+    borderWidth:1
+  },
 
   background: {
     color: 'blue',
@@ -55,9 +59,13 @@ const st = StyleSheet.create({
 
 function Item({ name, id, found, description}) {
   return (
-    <View style={st.baseText}>
-      <Text style={st.baseText}>{name} {id}</Text>
-      <Text style={st.baseText}>found:{found} {description}</Text>
+    <View style={st.baseeText}>
+
+      <Text style={st.baseText}>Item:{name}</Text>
+      <Text style={st.baseText}>ID:{id}</Text>
+      <Text style={st.baseText}>Found on:{found}</Text>
+      <Text style={st.baseText}>Item description: {description}</Text>
+      <Text></Text>
     </View>
   );
 }
@@ -153,6 +161,7 @@ render() {
          backgroundColor: '#ADD8E6',
          fontFamily: 'Georgia'
        }}>
+         <ScrollView>
          <Text style = {st.title}>Search Lost Item</Text>
          <Text></Text>
 
@@ -192,6 +201,7 @@ render() {
             renderItem = {({ item }) => <Item name = {item.name} id={item.id} description={item.desc} found={item.date} />}
             keyExtractor={item => item.id}
             />
+            </ScrollView>
         </View>
       );
         }
