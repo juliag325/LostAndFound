@@ -12,7 +12,8 @@ class Pickup extends React.Component {
     state = { //values you want to change as you go
       // found objects as an array (console.log to see inside)
 
-      foundItems: [], // objects should be inside already
+      foundItemsV: [], // objects should be inside already
+      foundItemsK: [],
 
       //your variables
         itemID: '',
@@ -21,59 +22,40 @@ class Pickup extends React.Component {
 
    componentDidMount() { //Puts all the refences as objects in an array
      foundRef.on('value', snapshot => {
-       this.setState({ foundItems: Object.values(snapshot.val()) });
+       this.setState({ foundItemsV: Object.values(snapshot.val()) });
+       this.setState({ foundItemsK: Object.keys(snapshot.val()) });
      });
    }
 
   //Check values for errors before inputing them to state
-   handlItem = (text) => {
-      this.setState({ name: text });
+   handleItem = (text) => {
+      this.setState({ itemID: text });
    }
    handleGID = (text) => {
-      this.setState({g_ID: text});
+      this.setState({ gID: text });
    }
 
    // submit button to enter stuff
-   submit = (foundItems, id) => {
-     item = [-1];
-     for (let i = 0; i < foundItems.length;i++) {
-       if(foundItems[i].id == id) {
-         item.push(i)
+   submit = (foundItemsV, foundItemsK, id, g_id) => {
+     let index = -1;
+     for (let i = 0; i < foundItemsV.length;i++) {
+       if(foundItemsV[i].id == id) {
+         index = i;
        }
      }
-     if(item[0] == -1) {
-       alert('Error: ID number does not exist')
+     if(index == -1) {
+       alert('Error: ID number does not exist.');
      }
      else {
-       
+       db.ref('/history').push({
+        id: foundItemsV[index].id,
+        name: foundItemsV[index].name,
+        date: foundItemsV[index].date,
+        location: foundItemsV[index].location,
+        gatorID: g_id
+      });
+      foundRef.child(foundItemsK[index]).remove();
      }
-
-     // let item = []
-     // for (let i = 0; i < foundItems.length;i++) {
-     //   if(foundItems[i].id == name) {
-     //     for(let j = 0; j < locationArray[i].staff_ID.length;j++) {
-     //       if(locationArray[i].staff_ID[j] == id) {
-     //         result = true;
-     //       }
-     //     }
-     //   }
-     // }
-     // if(itemID == '' || g_ID == '') {
-     //   alert("Error: Do not leave any inputs empty.");
-     // }
-     // else if {
-     //
-     // }
-     // else {
-     //
-     // }
-
-
-      //add to db example: (another example in FoundForm)
-      // db.ref('/history').push({
-      //  id: id,
-      // });
-      // this.props.navigation.navigate('WelcomeBack');
    }
 
 
@@ -94,7 +76,7 @@ class Pickup extends React.Component {
                placeholder = "ItemID"
                placeholderTextColor = "#696969"
                autoCapitalize = "none"
-               onChangeText = {this.handleName}/>
+               onChangeText = {this.handleItem}/>
 
              <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -105,9 +87,7 @@ class Pickup extends React.Component {
 
             <TouchableOpacity
                style = {styles.submitButton}
-               onPress = {
-                  () => this.submit(this.state.foundItems, '66232')
-               }>
+               onPress = { () => this.submit(this.state.foundItemsV, this.state.foundItemsK, this.state.itemID, this.state.gID)}>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
          </View>

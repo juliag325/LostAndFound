@@ -44,7 +44,6 @@ class FoundForm extends React.Component {
         category: category,
         desc: desc,
         date: date,
-        pickup: false,
         location: location
        });
        this.props.navigation.navigate('WelcomeBack');
