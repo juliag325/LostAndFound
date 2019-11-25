@@ -8,7 +8,6 @@ import SearchMap from './app/screens/SearchMap';
 import Staff from './app/screens/Staff';
 import FoundForm from './app/screens/FoundForm';
 import Pickup from './app/screens/Pickup';
-import History from './app/screens/History';
 import WelcomeBack from './app/screens/WelcomeBack'
 
 const Project = createStackNavigator({
@@ -29,9 +28,6 @@ const Project = createStackNavigator({
     },
     Pickup: {
         screen: Pickup
-    },
-    History: {
-        screen: History
     },
     WelcomeBack: {
         screen: WelcomeBack

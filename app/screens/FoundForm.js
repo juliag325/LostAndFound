@@ -2,14 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, ActionSheetIOS } from 'react-native';
 import {db} from './../../data/database/dbconfig'
 
-let foundRef = db.ref('/found');
-
 class FoundForm extends React.Component {
   static navigationOptions = {
     title: 'FoundForm'
   };
 
   buttons = ['Cancel', 'clothing','phone', 'laptop', 'wallet', 'backpack', 'credit card', 'keys', 'accessories', 'other'];
+  places = ['Cancel', 'marston','libwest', 'broward', 'reitz', 'neb'];
 
   state = {
       item: '',
@@ -17,7 +16,8 @@ class FoundForm extends React.Component {
       description: '',
       date: '',
       category: `${this.buttons[1]}`,
-      foundItem: []
+      foundItem: [],
+      location: `${this.places[1]}`
    }
    handleItem = (text) => {
       this.setState({ item: text.toLowerCase() })
@@ -29,12 +29,12 @@ class FoundForm extends React.Component {
       this.setState({ date: text.toLowerCase() });
    }
 
-   submit = (id, item, category, desc, date) => {
+   submit = (id, item, category, desc, date, location) => {
      let temp = "xx/xx/xxxx"
      if (!(date.length == temp.length && /\d/.test(date))) {
        alert("Error: Date not correctly formatted");
      }
-     else if(item == '' || category == '' || desc == '' || date == '') {
+     else if(item == '' || category == '' || desc == '' || date == '' || location == '') {
        alert("Error: Do not leave any inputs empty.");
      }
      else {
@@ -44,7 +44,7 @@ class FoundForm extends React.Component {
         category: category,
         desc: desc,
         date: date,
-        pickup: false
+        location: location
        });
        this.props.navigation.navigate('WelcomeBack');
      }
@@ -83,6 +83,13 @@ class FoundForm extends React.Component {
               <Text>{this.state.category}</Text>
             </TouchableOpacity>
 
+            <Text style = {styles.baseText}>Select the Location:</Text>
+            <TouchableOpacity
+              onPress={this.showLocationActionSheet}
+              style={styles.input}>
+              <Text>{this.state.location}</Text>
+            </TouchableOpacity>
+
             <Text style = {styles.baseText}>Enter details:</Text>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
@@ -94,7 +101,7 @@ class FoundForm extends React.Component {
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.submit(this.state.id, this.state.item, this.state.category, this.state.description, this.state.date)
+                  () => this.submit(this.state.id, this.state.item, this.state.category, this.state.description, this.state.date, this.state.location)
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
@@ -113,6 +120,18 @@ class FoundForm extends React.Component {
        }
      });
    }
+
+   showLocationActionSheet = () => {
+     ActionSheetIOS.showActionSheetWithOptions({
+       options: this.places,
+       cancelButtonIndex: 0
+     },
+     (placeIndex) => {
+       if(placeIndex != 0){
+         this.setState({ location: this.places[placeIndex].toLowerCase()});
+       }
+     });
+   }
 }
 
 
@@ -125,9 +144,9 @@ const styles = StyleSheet.create({
    },
    title: {
       color: 'black',
-      fontSize: 30, 
+      fontSize: 30,
       fontFamily: 'Courier',
-      alignContent: 'flex-start', 
+      alignContent: 'flex-start',
       justifyContent: 'center'
     },
     baseText:{
@@ -143,13 +162,13 @@ const styles = StyleSheet.create({
    },
    submitButton: {
       marginRight: 40,
-      marginLeft: 40, 
-      marginTop: 10, 
+      marginLeft: 40,
+      marginTop: 10,
       paddingTop: 10,
-      paddingBottom: 10, 
-      backgroundColor: '#3333FF', 
-      borderRadius: 10, 
-      borderWidth: 1, 
+      paddingBottom: 10,
+      backgroundColor: '#3333FF',
+      borderRadius: 10,
+      borderWidth: 1,
       borderColor: '#fff',
       fontSize: 20
    },
