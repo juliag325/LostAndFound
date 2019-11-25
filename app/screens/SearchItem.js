@@ -68,9 +68,32 @@ class SearchItem extends React.Component {
         item: '',
         category: `${this.buttons[1]}`,
         location: `${this.places[1]}`,
-        foundItems: []
+        foundItems: [],
+        showTbl: false
+     }
+     toggleTable = function () {
+       this.setState({showTbl: true});
+     }
+     _renderTable = function () {
+       if(this.state.showTbl) {
+         return (this.resultArray.map((dataObject) => {
+           return (
+             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row',alignItems: 'center',justifyContent: 'center'}}>
+              <Text>{dataObject.name} </Text>
+              <Text>{dataObject.category} </Text>
+              <Text>{dataObject.location}</Text>
+            </View>
+           )
+         })
+       )
+           // <Text>Yo whats good</Text>
+       }
+       else {
+         return null;
+       }
      }
     submit = (item, category, location) => {
+      this.toggleTable();
       this.resultArray = [];
       let result = false;
       for(let i = 0; i < this.state.foundItems.length; i++) {
@@ -119,7 +142,7 @@ render() {
          justifyContent:'center',
          backgroundColor: '#ADD8E6',
          fontFamily: 'Georgia'
-        }}>
+       }}>
          <Text style = {st.title}>Seach Lost Item</Text>
          <Text></Text>
 
@@ -155,6 +178,8 @@ render() {
           underlayColor='#fff'>
             <Text style = {st.loginText}>Search Item</Text>
           </TouchableOpacity>
+          <Text></Text>
+          {this._renderTable()}
         </View>
       );
         }
