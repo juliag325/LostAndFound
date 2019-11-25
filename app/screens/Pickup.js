@@ -55,6 +55,7 @@ class Pickup extends React.Component {
         gatorID: g_id
       });
       foundRef.child(foundItemsK[index]).remove();
+      this.props.navigation.navigate('Staff');
      }
    }
 
