@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, ActionSheetIOS, StyleSheet, TextInput} from 'react-native';
+import { Button, View, Text, ActionSheetIOS, StyleSheet, TextInput, FlatList} from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 //import { Dropdown } from 'react-native-material-dropdown';
 import {db} from './../../data/database/dbconfig'
@@ -18,6 +18,8 @@ const st = StyleSheet.create({
     color: 'black',
     fontSize: 20
   },
+
+
   background: {
     color: 'blue',
   },
@@ -50,6 +52,16 @@ const st = StyleSheet.create({
 
 });
 
+
+function Item({ name, id, found, description}) {
+  return (
+    <View style={st.baseText}>
+      <Text style={st.baseText}>{name} {id}</Text>
+      <Text style={st.baseText}>found:{found} {description}</Text>
+    </View>
+  );
+}
+
 class SearchItem extends React.Component {
   componentDidMount() { //Puts all the refences as objects in an array
     foundRef.on('value', snapshot => {
@@ -74,25 +86,26 @@ class SearchItem extends React.Component {
      toggleTable = function () {
        this.setState({showTbl: true});
      }
-     _renderTable = function () {
-       if(this.state.showTbl) {
-         return (this.resultArray.map((dataObject) => {
-           return (
-             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row',alignItems: 'center',justifyContent: 'center'}}>
-              <Text>{dataObject.id}, </Text>
-              <Text>{dataObject.name},  </Text>
-              <Text>{dataObject.category},  </Text>
-              <Text>{dataObject.location}</Text>
-            </View>
-           )
-         })
-       )
-           // <Text>Yo whats good</Text>
-       }
-       else {
-         return null;
-       }
-     }
+
+     // _renderTable = function () {
+     //   if(this.state.showTbl) {
+     //     return (this.resultArray.map((dataObject) => {
+     //       return (
+     //         <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row',alignItems: 'center',justifyContent: 'center'}}>
+     //          <Text>{dataObject.id}, </Text>
+     //          <Text>{dataObject.name},  </Text>
+     //          <Text>{dataObject.category},  </Text>
+     //          <Text>{dataObject.location}</Text>
+     //        </View>
+     //       )
+     //     })
+     //   )
+     //       // <Text>Yo whats good</Text>
+     //   }
+     //   else {
+     //     return null;
+     //   }
+     // }
     submit = (item, category, location) => {
       this.toggleTable();
       this.resultArray = [];
@@ -140,7 +153,7 @@ render() {
          backgroundColor: '#ADD8E6',
          fontFamily: 'Georgia'
        }}>
-         <Text style = {st.title}>Seach Lost Item</Text>
+         <Text style = {st.title}>Search Lost Item</Text>
          <Text></Text>
 
          <Text style = {st.baseText}>Item</Text>
@@ -157,10 +170,7 @@ render() {
            style={st.input}>
            <Text>{this.state.category}</Text>
          </TouchableOpacity>
-          {/* <Dropdown
-            label='Category'
-            data={data}
-          /> */}
+
           <Text style = {st.baseText}>Location</Text>
           <TouchableOpacity
             onPress={this.showActionSheet2}
@@ -176,7 +186,12 @@ render() {
             <Text style = {st.loginText}>Search Item</Text>
           </TouchableOpacity>
           <Text></Text>
-          {this._renderTable()}
+
+          <FlatList
+            data= {this.resultArray}
+            renderItem = {({ item }) => <Item name = {item.name} id={item.id} description={item.desc} found={item.date} />}
+            keyExtractor={item => item.id}
+            />
         </View>
       );
         }
