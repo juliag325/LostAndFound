@@ -13,11 +13,10 @@ class Pickup extends React.Component {
       // found objects as an array (console.log to see inside)
 
       foundItems: [], // objects should be inside already
-      
+
       //your variables
-        name: '',
-        g_ID: '',
-        item: ''
+        itemID: '',
+        gID: '',
      }
 
    componentDidMount() { //Puts all the refences as objects in an array
@@ -27,19 +26,48 @@ class Pickup extends React.Component {
    }
 
   //Check values for errors before inputing them to state
-   handleName = (text) => {
-      this.setState({ name: text })
+   handlItem = (text) => {
+      this.setState({ name: text });
    }
    handleGID = (text) => {
-      this.setState({ g_ID: text })
-   }
-   handleItem = (text) => {
-     this.setState({ item: text })
+      this.setState({g_ID: text});
    }
 
    // submit button to enter stuff
-   submit = (name, g_ID, item) => {
-      alert('name: ' + name + ' g_ID: ' + g_ID + 'item:' + item)
+   submit = (foundItems, id) => {
+     item = [-1];
+     for (let i = 0; i < foundItems.length;i++) {
+       if(foundItems[i].id == id) {
+         item.push(i)
+       }
+     }
+     if(item[0] == -1) {
+       alert('Error: ID number does not exist')
+     }
+     else {
+       
+     }
+
+     // let item = []
+     // for (let i = 0; i < foundItems.length;i++) {
+     //   if(foundItems[i].id == name) {
+     //     for(let j = 0; j < locationArray[i].staff_ID.length;j++) {
+     //       if(locationArray[i].staff_ID[j] == id) {
+     //         result = true;
+     //       }
+     //     }
+     //   }
+     // }
+     // if(itemID == '' || g_ID == '') {
+     //   alert("Error: Do not leave any inputs empty.");
+     // }
+     // else if {
+     //
+     // }
+     // else {
+     //
+     // }
+
 
       //add to db example: (another example in FoundForm)
       // db.ref('/history').push({
@@ -63,7 +91,7 @@ class Pickup extends React.Component {
             <Text></Text>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
-               placeholder = "Name"
+               placeholder = "ItemID"
                placeholderTextColor = "#696969"
                autoCapitalize = "none"
                onChangeText = {this.handleName}/>
@@ -75,17 +103,10 @@ class Pickup extends React.Component {
                 autoCapitalize = "none"
                 onChangeText = {this.handleGID}/>
 
-            <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Item Collected"
-               placeholderTextColor = "#696969"
-               autoCapitalize = "none"
-               onChangeText = {this.handleItem}/>
-
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.submit(this.state.name, this.state.g_ID, this.state.item)
+                  () => this.submit(this.state.foundItems, '66232')
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
@@ -102,9 +123,9 @@ const styles = StyleSheet.create({
    },
    title: {
       color: 'black',
-      fontSize: 30, 
+      fontSize: 30,
       fontFamily: 'Courier',
-      alignContent: 'flex-start', 
+      alignContent: 'flex-start',
       justifyContent: 'center'
     },
    input: {
@@ -116,13 +137,13 @@ const styles = StyleSheet.create({
    },
    submitButton: {
       marginRight: 40,
-      marginLeft: 40, 
-      marginTop: 10, 
+      marginLeft: 40,
+      marginTop: 10,
       paddingTop: 10,
-      paddingBottom: 10, 
-      backgroundColor: '#3333FF', 
-      borderRadius: 10, 
-      borderWidth: 1, 
+      paddingBottom: 10,
+      backgroundColor: '#3333FF',
+      borderRadius: 10,
+      borderWidth: 1,
       borderColor: '#fff',
       fontSize: 20
    },

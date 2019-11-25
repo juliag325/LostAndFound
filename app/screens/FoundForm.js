@@ -2,8 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, ActionSheetIOS } from 'react-native';
 import {db} from './../../data/database/dbconfig'
 
-let foundRef = db.ref('/found');
-
 class FoundForm extends React.Component {
   static navigationOptions = {
     title: 'FoundForm'
