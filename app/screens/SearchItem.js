@@ -106,10 +106,6 @@ class SearchItem extends React.Component {
       if(!result) {
         alert("No items found")
       }
-      else {
-        alert("Search successful")
-        console.log(this.resultArray)
-      }
     }
     showActionSheet = () => {
       ActionSheetIOS.showActionSheetWithOptions({
