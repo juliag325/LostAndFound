@@ -79,8 +79,9 @@ class SearchItem extends React.Component {
          return (this.resultArray.map((dataObject) => {
            return (
              <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row',alignItems: 'center',justifyContent: 'center'}}>
-              <Text>{dataObject.name} </Text>
-              <Text>{dataObject.category} </Text>
+              <Text>{dataObject.id}, </Text>
+              <Text>{dataObject.name},  </Text>
+              <Text>{dataObject.category},  </Text>
               <Text>{dataObject.location}</Text>
             </View>
            )
